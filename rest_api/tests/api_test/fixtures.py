@@ -44,12 +44,26 @@ from utils import get_batches,  get_transactions, get_state_address, post_batch,
                   _stop_settings_tp, _start_settings_tp, batch_count, transaction_count, get_batch_statuses, post_batch_no_endpoint
 
 from payload import get_signer, create_intkey_transaction , create_batch,\
+<<<<<<< HEAD
                     create_invalid_intkey_transaction, create_intkey_same_transaction
+=======
+                    create_invalid_intkey_transaction, create_intkey_same_transaction, \
+                  _stop_validator , _create_genesis , wait_for_rest_apis , _get_client_address, \
+                  _stop_settings_tp, _start_settings_tp
+
+from payload import get_signer, create_intkey_transaction , create_batch,\
+                    create_invalid_intkey_transaction
+
+>>>>>>> 68a6a1607d8d9bdc0f7bca83675fe9d021db8763
 
                
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
                   
+<<<<<<< HEAD
+=======
+
+>>>>>>> 68a6a1607d8d9bdc0f7bca83675fe9d021db8763
 LIMIT = 100  
          
 
@@ -133,6 +147,10 @@ def invalid_batch():
     
     return data
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 68a6a1607d8d9bdc0f7bca83675fe9d021db8763
 @pytest.fixture(scope="function")
 def setup_batch_mul_txns(request):
     """Setup method for posting batches and returning the 

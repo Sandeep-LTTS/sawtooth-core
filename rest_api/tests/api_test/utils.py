@@ -290,7 +290,10 @@ def _get_client_address():
     command = "hostname -I | awk '{print $1}'"
     node_ip = subprocess.check_output(command , shell=True).decode().strip().replace("'", '"')
     return 'http://' + node_ip + ':8008'
+<<<<<<< HEAD
    
+=======
+>>>>>>> 68a6a1607d8d9bdc0f7bca83675fe9d021db8763
 
 def _start_validator():
     LOGGER.info('Starting the validator')
