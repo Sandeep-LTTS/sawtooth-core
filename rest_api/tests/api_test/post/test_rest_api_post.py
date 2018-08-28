@@ -48,7 +48,9 @@ from payload import get_signer, create_intkey_transaction, create_batch,\
                     create_intkey_same_transaction
 
 from base import RestApiBaseTest
+
 from fixtures import setup_batch_mul_txns, setup_batch_valinv_txns, setup_batch_invval_txns, setup_batch_no_endpoint, setup_batch_invalid_txns
+
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -372,6 +374,7 @@ class TestPost(RestApiBaseTest):
                 LOGGER.info(data['error']['message'])
                 assert data['error']['code'] == 30
                 assert data['error']['title'] =='Submitted Batches Invalid'
+
                 
 class TestPostMulTxns(RestApiBaseTest):
   
@@ -417,3 +420,4 @@ class TestPostMulTxns(RestApiBaseTest):
         
         
       
+
