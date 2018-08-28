@@ -374,19 +374,7 @@ class TestPost(RestApiBaseTest):
                 assert data['error']['title'] =='Submitted Batches Invalid'
                 
 class TestPostMulTxns(RestApiBaseTest):
-    
-    def test_rest_api_post_mul_txns(self, setup_batch_mul_txns):
-        
-        initial_batch_length = setup_batch_mul_txns['initial_batch_length']
-        expected_batch_length = setup_batch_mul_txns['expected_batch_length']
-        initial_trn_length = setup_batch_mul_txns['initial_trn_length']
-        expected_trn_length = setup_batch_mul_txns['expected_trn_length']
-        assert initial_batch_length < expected_batch_length
-        assert initial_trn_length < expected_trn_length
-        response = setup_batch_mul_txns['response']
-        assert response == 'COMMITTED'
-    
-    
+  
     def test_rest_api_post_valinv_txns(self, setup_batch_valinv_txns):
         
         initial_batch_length = setup_batch_valinv_txns['initial_batch_length']
