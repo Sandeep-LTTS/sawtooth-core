@@ -48,6 +48,7 @@ from payload import get_signer, create_intkey_transaction, create_batch,\
                     create_intkey_same_transaction
 
 from base import RestApiBaseTest
+from fixtures import setup_batch_mul_txns, setup_batch_valinv_txns, setup_batch_invval_txns, setup_batch_no_endpoint, setup_batch_invalid_txns
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -371,6 +372,60 @@ class TestPost(RestApiBaseTest):
                 LOGGER.info(data['error']['message'])
                 assert data['error']['code'] == 30
                 assert data['error']['title'] =='Submitted Batches Invalid'
+                
+class TestPostMulTxns(RestApiBaseTest):
     
-
+    def test_rest_api_post_mul_txns(self, setup_batch_mul_txns):
         
+        initial_batch_length = setup_batch_mul_txns['initial_batch_length']
+        expected_batch_length = setup_batch_mul_txns['expected_batch_length']
+        initial_trn_length = setup_batch_mul_txns['initial_trn_length']
+        expected_trn_length = setup_batch_mul_txns['expected_trn_length']
+        assert initial_batch_length < expected_batch_length
+        assert initial_trn_length < expected_trn_length
+        response = setup_batch_mul_txns['response']
+        assert response == 'COMMITTED'
+    
+    
+    def test_rest_api_post_valinv_txns(self, setup_batch_valinv_txns):
+        
+        initial_batch_length = setup_batch_valinv_txns['initial_batch_length']
+        expected_batch_length = setup_batch_valinv_txns['expected_batch_length']
+        initial_trn_length = setup_batch_valinv_txns['initial_trn_length']
+        expected_trn_length = setup_batch_valinv_txns['expected_trn_length']
+        expected_code = setup_batch_valinv_txns['code']
+        assert initial_batch_length < expected_batch_length
+        assert initial_trn_length < expected_trn_length
+        assert expected_code == 30
+     
+    def test_rest_api_post_invval_txns(self, setup_batch_invval_txns):
+        
+        initial_batch_length = setup_batch_invval_txns['initial_batch_length']
+        expected_batch_length = setup_batch_invval_txns['expected_batch_length']
+        initial_trn_length = setup_batch_invval_txns['initial_trn_length']
+        expected_trn_length = setup_batch_invval_txns['expected_trn_length']
+        assert initial_batch_length < expected_batch_length
+        assert initial_trn_length < expected_trn_length
+        assert setup_batch_invval_txns['code'] == 30
+      
+    def test_rest_api_post_no_endpoint(self, setup_batch_no_endpoint):
+        
+        initial_batch_length = setup_batch_no_endpoint['initial_batch_length']
+        expected_batch_length = setup_batch_no_endpoint['expected_batch_length']
+        initial_trn_length = setup_batch_no_endpoint['initial_trn_length']
+        expected_trn_length = setup_batch_no_endpoint['expected_trn_length']
+        assert initial_batch_length < expected_batch_length
+        assert initial_trn_length < expected_trn_length
+        assert setup_batch_no_endpoint['code'] == 404
+    
+    def test_rest_api_post_invalid_txns(self, setup_batch_invalid_txns):
+        initial_batch_length = setup_batch_invalid_txns['initial_batch_length']
+        expected_batch_length = setup_batch_invalid_txns['expected_batch_length']
+        initial_trn_length = setup_batch_invalid_txns['initial_trn_length']
+        expected_trn_length = setup_batch_invalid_txns['expected_trn_length']
+        assert initial_batch_length < expected_batch_length
+        assert initial_trn_length < expected_trn_length
+        assert setup_batch_invalid_txns['code'] == 30
+        
+        
+      
